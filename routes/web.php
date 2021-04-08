@@ -17,11 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+Route::get('/posts.create', 'PostsController@create')->name('create');
 
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/user', 'UserController@index')->name('user');
 Route::get('/admin', 'AdminController@index')->name('admin');
 
-Auth::routes();
+
