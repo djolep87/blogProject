@@ -4,15 +4,16 @@
 @section('content')
     <h1>Create post</h1>
 
-    <form action="" method="post" enctype="multipart/form-data">
+    <form action="/posts" method="POST" enctype="multipart/form-data">
+        {{ csrf_field() }}
         <div class="form-group">
             <label for="title">Title</label>
             <input class="form-control shadow-sm" type="text" name="title" placeholder="Title">
         </div>
 
-        <div class="form-group">
+        <div class="form-group" id="editor">
             <label for="body">Body</label>
-            <textarea class="form-control shadow-sm" name="body" id="" cols="30" rows="10"></textarea>
+            <textarea class="form-control shadow-sm" name="body" id="mytextarea" cols="30" rows="10"></textarea>
         </div>
 
         <div class="form-group">
@@ -21,7 +22,7 @@
         </div>
 
         <div class="form-group">
-            <input class="shadow-sm" type="submit" value="Create">
+            <input  class="form-control shadow-sm btn btn-outline-success" type="submit" value="Create blog">
         </div>
     </form>
 @endsection

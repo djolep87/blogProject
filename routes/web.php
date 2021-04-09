@@ -19,9 +19,10 @@ Route::get('/', function () {
 });
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::resource('posts', 'PostsController');
 
-
-Route::get('/posts.create', 'PostsController@create')->name('create');
+// Route::get('/posts.create', 'PostsController@create')->name('create');
+// Route::post('/posts', 'PostsController@store');
 
 Auth::routes();
 
