@@ -22,7 +22,7 @@
                     
                         <table class="table table-striped">
                                 <tr>
-                                    <th>Naslov</th>
+                                    <th>Title</th>
                                     <th>Description</th>
                                     <th>Action</th>
                                     <th>Action</th>
@@ -34,11 +34,11 @@
                                     </td>
 
                                     <td>
-                                        <small style="font-size: 11px">Created: {{$post->created_at->toFormattedDateString()}}<br> Autor: {{$post->user->name}}</small>
+                                        <small style="font-size: 11px">Created: {{$post->created_at->toFormattedDateString()}}<br> Author: {{$post->user->name}}</small>
                                     </td>
 
                                     <td>
-                                        <a href="/posts/{{ $post->id }}/edit" class="btn btn-default"><img src="/images/edit.png" alt="edit"></a>
+                                        <a href="/posts/{{ $post->id }}/edit" class="align-middle"><img src="/images/edit.png" alt="edit"></a>
                                     </td>
 
                                     <td>
@@ -47,7 +47,7 @@
                                         
                                             @method('DELETE')
                                             
-                                            <input class="submit" type="image" src="/images/delete.png" name="submit" alt="delete">
+                                            <input class="submit align-middle" type="image" src="/images/delete.png" name="submit" alt="delete">
                                       
                                             {{-- <button type="submit" src=""  ><img src="/images/delete.png" alt=""></button> --}}
                                         </form>

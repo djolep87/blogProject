@@ -13,7 +13,7 @@
 
         <div class="form-group" id="editor">
             <label for="body">Body</label>
-            <textarea class="form-control shadow-sm" name="body" id="mytextarea" cols="30" rows="10"></textarea>
+            <textarea class="form-control shadow-sm" name="body" id="" cols="30" rows="10"></textarea>
         </div>
 
         <div class="form-group">

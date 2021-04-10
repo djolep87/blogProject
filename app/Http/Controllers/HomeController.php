@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+       
+       $posts = Post::where('status', 1)->orderBy('created_at', 'desc')->paginate(5);
+        
+        return view('/home')->with('posts',$posts);
     }
 }
