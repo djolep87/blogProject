@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title',"Home")
 
 @section('content')
 <h1 class="text-center" id="middle" style="padding-top: 40px;"><strong>Posts</strong> </h1>

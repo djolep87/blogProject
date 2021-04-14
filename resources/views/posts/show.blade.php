@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', e($post->title))
 
 @section('content')
     <a href="javascript:history.back()"  class="btn btn-default">Back</a>

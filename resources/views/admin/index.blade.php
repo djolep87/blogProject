@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Admin Dashboard' )
 
 @section('content')
 <main class="py-4">
@@ -6,7 +7,14 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Posts List</div>
+                    <div class="card-header">Admin Dashboard</div>
+                    <div class="alert " role="alert">
+                        @if(session()->has('message'))
+                            <div class="alert alert-success text-center">
+                                {{ session()->get('message') }}
+                            </div>
+                        @endif
+                    </div>
                     <div class="card-body">
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
