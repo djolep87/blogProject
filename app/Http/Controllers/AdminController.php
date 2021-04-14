@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
+use App\User;
 
 class AdminController extends Controller
 {
@@ -20,6 +22,8 @@ class AdminController extends Controller
 
     public function index()
     {
-        return view('admin.index');
+        $users = User::all();
+        $posts = Post::orderBy('created_at', 'desc')->get();
+        return view('admin.index')->with(['posts' => $posts, 'users' => $users]);
     }
 }

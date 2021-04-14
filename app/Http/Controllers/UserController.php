@@ -17,15 +17,14 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('role:user');
-        
     }
 
 
     public function index()
     {
         $user = Auth::user();
-        $posts = Post::where('user_id', $user->id)->orderBy('id', 'desc')->get(); 
-        
+        $posts = Post::where('user_id', $user->id)->orderBy('id', 'desc')->get();
+
         return view('user.index')->with('posts', $posts, 'user', $user);
     }
 }

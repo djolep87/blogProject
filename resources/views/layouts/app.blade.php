@@ -9,29 +9,28 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-
- 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Arvo&family=Montserrat:wght@100;400&family=Source+Sans+Pro:wght@200;300&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.js"></script>
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    
     <link rel="stylesheet" href="/css/style.css">
-
-
-
+    
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    <script src="{{ asset('js/app.js') }}" ></script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
 
-
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-        tinymce.init({
-          selector: '#mytextarea'
-        });
-      </script>
+      
+      
+      
 </head>
 <body>
     <div id="app">
@@ -71,7 +70,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @if(Auth::user()->hasRole('admin') == 'admin@app.com')
+                                    <a class="dropdown-item" href="{{route('admin')}}">Dashboard</a>
+                                    @else
                                     <a class="dropdown-item" href="{{route('user')}}">Dashboard</a>
+                                   @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -91,7 +94,66 @@
 
         <main class="py-4 container">
             @yield('content')
+
+
         </main>
     </div>
+
+    <script  type="text/javascript">
+        let elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+    
+           elems.forEach(function(html) {
+               let switchery = new Switchery(html,  { size: 'small' });
+           });
+        
+           $(document).ready(function(){
+               $('.js-switch').change(function () {
+                   let status = $(this).prop('checked') === true ? 1 : 0;
+                   let postId = $(this).data('id');
+                   $.ajax({
+                       type: "GET",
+                       dataType: "json",
+                       url: '{{ route('posts.update.status') }}',
+                       data: {'status': status, 'post_id': postId},
+                       success: function (data) {
+                           toastr.options.closeButton = true;
+                           toastr.options.closeMethod = 'fadeOut';
+                           toastr.options.closeDuration = 1000;
+                           toastr.success(data.message);
+                       }
+                   });
+               });
+           });
+    </script>
+
+     {{-- <script  type="text/javascript">
+                let elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+            
+                   elems.forEach(function(html) {
+                       let switchery = new Switchery(html,  { size: 'small' });
+                   });
+                   
+                
+                   $(document).ready(function(){
+                       $('.js-switch').change(function () {
+                           let status = $(this).prop('checked') === true ? 1 : 0;
+                           let postId = $(this).data('id');
+                           $.ajax({
+                               type: "GET",
+                               dataType: "json",
+                               url: '{{ route('posts.update.status') }}',
+                               data: {'status': status, 'post_id': postId},
+                               success: function (data) {
+                                   toastr.options.closeButton = true;
+                                   toastr.options.closeMethod = 'fadeOut';
+                                   toastr.options.closeDuration = 100;
+                                   toastr.success(data.message);
+                               }
+                           });
+                       });
+                   });
+            </script> --}}
+    
+
 </body>
 </html>

@@ -21,6 +21,7 @@ use App\Post;
 Route::get('/', 'HomeController@index');
 
 Route::resource('posts', 'PostsController');
+Route::get('/status/update', 'PostsController@updateStatus')->name('posts.update.status');
 
 // Route::get('/posts.create', 'PostsController@create')->name('create');
 // Route::post('/posts', 'PostsController@store');
@@ -29,5 +30,3 @@ Auth::routes();
 
 Route::get('/user', 'UserController@index')->name('user');
 Route::get('/admin', 'AdminController@index')->name('admin');
-
-
